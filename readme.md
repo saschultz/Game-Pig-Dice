@@ -1,4 +1,3 @@
-SPECS
 | Behavior | Input | Output |
 |----------|:-----:|:------:|
 | The program will return a random number between 1 and 6 when the button is clicked | "click" | 5 |

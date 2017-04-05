@@ -1,10 +1,13 @@
-function Player() {
-  this.roundRolls = [];
-  this.roundScore = roundScore;
-  this.subTotal = 0;
-}
+// function Player(roundRolls, roundScore) {
+//   this.roundRolls = [];
+//   this.roundScore = roundScore;
+// }
 
-Player.prototype.roll = function() {
+var roundSubTotal = 0;
+var totalScore = 0;
+var piggyBank = 0;
+
+var randomRoll = function() {
   var retRoll = (Math.floor(Math.random() * 6) + 1);
   console.log(retRoll);
   return retRoll;
@@ -21,27 +24,29 @@ function roundRolls(numba) {
 }
 
 function ruhRoh(roundScore) {
-  totalScore += roundScore;
-  console.log(totalScore);
+  piggyBank += roundScore;
 
-  return totalScore;
+
+  return piggyBank;
 }
 
 //Front-End Logic:
 $(document).ready(function(){
-  var newPlayer = new Player();
   $("#rollForm").submit(function(e){
     e.preventDefault();
-    newPlayer.roll();
-    newPlayer.subTotal = newPlayer.roll();
-    var roundScore = newPlayer.subTotal;
+    var currentScore = randomRoll();
+    var roundScore = roundRolls(currentScore);
 
     $("#dieRoll").append("<li>" + currentScore + "</li>");
     $("#roundScore").text(roundScore);
+    $("#holdButton").click(function(){
+      var piggyBank = ruhRoh(roundScore);
+      $("#ruhRoh").text(piggyBank);
+      console.log(piggyBank);
+
+
+    });
+
   });
-  $("#holdButton").click(function(){
-    newPlayer.roundScore = newPlayer.subTotal;
-    var piggyBank = roundScore;
-    console.log(piggyBank);
-  });
+
 });
